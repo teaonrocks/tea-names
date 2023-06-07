@@ -1,81 +1,159 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+const teaNames = [
+	"Chun Mee",
+	"Chun Lu",
+	"Bi Luo Chun",
+	"Gunpowder",
+	"Maofeng",
+	"Yellow",
+	"Jasmine",
+	"Anji Bai Cha",
+	"Maojian",
+	"Taiping Houkui",
+	"Jin Shan",
+	"Longjing (Dragon Well)",
+	"Sejak",
+	"Ujeon",
+	"Jungjak",
+	"Daejak",
+	"Sencha",
+	"Gyokuro",
+	"Kabusecha",
+	"Tencha",
+	"Matcha",
+	"Mecha",
+	"Shincha",
+	"Hojicha",
+	"Kukicha",
+	"Bancha",
+	"Genmaicha",
+	"Konacha",
+	"Kamairicha",
+	"Tamaryokucha",
+	"Assam",
+	"English Breakfast",
+	"Earl Grey",
+	"Darjeeling",
+	"Rukeri",
+	"Pu-Erh",
+	"Scottish Afternoon",
+	"Irish Breakfast",
+	"Milima",
+	"Ceylon",
+	"Chai",
+	"Panyang Congou",
+	"Keemun",
+	"Lapsang Souchong",
+	"Golden Tips",
+	"Temi Sikkim",
+	"Nimbu",
+	"Wakuocha",
+	"Silver Needle",
+	"White Peony",
+	"Shou Mei",
+	"Gong Mei",
+	"Darjeeling White",
+	"Da Hong Pao",
+	"Shui Jin Gui",
+	"Tie Luo Han",
+	"Shui Xian",
+	"Bai Jiguan",
+	"Tieguanyin (Iron Goddess)",
+	"Mi Lan Xiang Dan Con",
+	"Ancient Tree Dan Cong",
+	"Guan Yin",
+	"Dancong",
+	"Cassia",
+	"Da Yu Lin",
+	"Dong Ding",
+	"Dong Fang Meiren",
+	"Alishan",
+	"Pouchong",
+	"Ruan Zhi",
+	"Jin Xuan",
+	"Li Shan",
+	"Avocado Leaf",
+	"Bamboo",
+	"Butterfly Pea Flower",
+	"Chaga Mushroom",
+	"Chamomile",
+	"Lavender",
+	"Liquorice",
+	"Guayusa",
+	"Honeysuckle Flower",
+	"Lemon",
+	"Mint",
+	"Olive Leaves",
+	"Hibiscus",
+	"Rooibos",
+	"Turmeric",
+	"Pumpkin Spice",
+	"Chrysanthemum",
+	"Buckwheat",
+	"Honeybush",
+	"Bush",
+	"Mamaki",
+];
+const generated = teaNames[Math.floor(Math.random() * teaNames.length)];
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
+<Layout title="Tea Names">
+	<main class="flex items-center justify-center h-screen flex-col gap-2">
+		<div
+			id="toast"
+			class="absolute px-4 py-2 rounded border border-neutral-50 top-10 bg-neutral-900 opacity-0 transition-opacity"
+		>
+			Copied to clipboard!
+		</div>
+		<h1 class="text-3xl font-bold">Tea Generator</h1>
+		<div class="flex gap-2">
+			<input
+				id="tea-name"
+				type="text"
+				readonly
+				value={generated}
+				class="rounded p-2 text-neutral-900 w-64"
 			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
+			<button id="copy">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="lucide lucide-copy"
+					><rect width="14" height="14" x="8" y="8" rx="2" ry="2"
+					></rect><path
+						d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+					></path></svg
+				>
+			</button>
+		</div>
+		<button id="gen" class="rounded py-2 px-4 border border-neutral-50">
+			Generate</button
+		>
 	</main>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
-</style>
+<script>
+	// add event listener to button and generate new tea name
+	const gen = document.getElementById("gen");
+	gen?.addEventListener("click", () => {
+		window.location.reload();
+	});
+	const copy = document.getElementById("copy");
+	copy?.addEventListener("click", () => {
+		const input = document.getElementById("tea-name") as HTMLInputElement;
+		navigator.clipboard.writeText(input.value);
+		const toast = document.getElementById("toast");
+		toast?.classList.add("opacity-100");
+		setTimeout(() => {
+			toast?.classList.remove("opacity-100");
+		}, 1500);
+	});
+</script>
